@@ -1,3 +1,8 @@
+//2022111391_하늘소_신입부원_2주차_과제
+//초음파 센서가 4핀이 아닌, 3핀(sig)라서 코드를 수정했습니다.
+
+#include <Arduino.h>
+
 const int sigPin = 5; 
 const int ledPin = 2;  
 
