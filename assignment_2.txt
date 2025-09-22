@@ -1,0 +1,42 @@
+const int sigPin = 5; 
+const int ledPin = 2;  
+
+const int distanceThreshold = 10;
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  long duration, distance;
+  
+  pinMode(sigPin, OUTPUT);
+  digitalWrite(sigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(sigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(sigPin, LOW);
+
+  pinMode(sigPin, INPUT);
+  duration = pulseIn(sigPin, HIGH);
+
+  distance = (duration /2) / 29.1;
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  if (distance <= distanceThreshold && distance > 0)
+  {
+    digitalWrite(ledPin, HIGH);
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(100);
+}
